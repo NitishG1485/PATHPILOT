@@ -18,17 +18,21 @@ API Integration: Connects with the Flask backend via RESTful API calls (fetch / 
 **⚙️ Installation & Setup**
 
 To set up and run Path Pilot on your local system:
+
 1️⃣ Clone the repository
 Bash
 git clone https://github.com/NitishG/path-pilot.git
 cd path-pilot
+
 2️⃣ Install backend dependencies
 Bash
 cd backend
 pip install -r requirements.txt
+
 3️⃣ Run the Backend Server
 Bash
 python server.py
+
 4️⃣ Setup and Run the Frontend
 Bash
 cd ../frontend
