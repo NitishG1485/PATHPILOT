@@ -1,0 +1,105 @@
+<!-- templates/certificate.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathPilot - Certificate</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <!-- Inline print styles to force a clean print-to-PDF -->
+    <style>
+        @media print {
+            body { background-color: white !important; }
+            .header, .cta-button { display: none !important; }
+            .certificate-container { border: none !important; box-shadow: none !important; margin: 0; padding: 0; width: 100%; height: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content container" id="certificate-page-content">
+        <div class="certificate-container">
+            <h1 class="certificate-header">PathPilot</h1>
+            <h2 class="certificate-subheader">Certificate of Achievement</h2>
+            <p class="cert-text">This certifies that</p>
+            <span id="cert-user-name">STUDENT NAME</span>
+            <p class="cert-text" style="margin-top: 1rem;">has successfully completed the rigorous</p>
+            <p class="cert-program">Career Quest Guidance Program</p>
+            <p class="cert-text">for demonstrating outstanding commitment to career development and exploration.</p>
+            <div class="cert-footer">
+                <div class="cert-info">
+                    <p>Total XP Earned:</p>
+                    <strong><span id="cert-total-xp">1000</span> XP</strong>
+                </div>
+                <div class="cert-info">
+                    <p>Completion Date:</p>
+                    <strong><span id="cert-date">October 24, 2025</span></strong>
+                </div>
+                <div class="cert-info">
+                    <p>Certificate ID:</p>
+                    <strong id="cert-id">PP-XXXXXXX</strong>
+                </div>
+            </div>
+            <div class="cert-signature" style="margin-top: 3rem;">
+                <p>PathPilot Team, Lead Instructor</p>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button id="download-cert-btn" class="cta-button">
+                <i class="fa-solid fa-download" style="margin-right: 0.5rem;"></i> Download Certificate (Print to PDF)
+            </button>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initCertificatePage);
+    </script>
+</body>
+</html>

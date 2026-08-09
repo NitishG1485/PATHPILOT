@@ -1,0 +1,115 @@
+<!-- templates/profile.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathPilot - Profile</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content container">
+        <div class="level-page-header">
+            <h1>Your Profile</h1>
+            <p>Manage your details and track your progress through the Career Quest.</p>
+        </div>
+        <div class="profile-grid">
+            <div class="card profile-card">
+                <div id="profile-avatar" class="avatar">U</div>
+                <h3>Your PathPilot Journey</h3>
+                <p id="profile-email-display" style="color: var(--text-color-light); font-size: 0.9rem;">Update your details below</p>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <i class="fa-solid fa-bolt"></i>
+                        <p>Total XP</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fa-solid fa-flag-checkered"></i>
+                        <p>Levels</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fa-solid fa-sitemap"></i>
+                        <p>Stream</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card profile-form">
+                <h2>Account Details</h2>
+                <div id="profile-status" class="hidden" style="margin-bottom: 1rem;"></div>
+                <div class="form-group">
+                    <label for="profile-name">Full Name (For Certificate)</label>
+                    <input type="text" id="profile-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="profile-email">Email Address</label>
+                    <input type="email" id="profile-email" placeholder="Enter your email" required>
+                </div>
+                <button id="save-profile-btn" class="cta-button">
+                    <i class="fa-solid fa-save" style="margin-right: 0.5rem;"></i> Save Profile
+                </button>
+                <hr style="margin: 1.5rem 0; border-color: var(--border-color);">
+                <h2>Journey Summary</h2>
+                <ul id="xp-history" style="list-style: none; padding: 0;">
+                    <!-- Summary populated by script.js -->
+                </ul>
+                <button id="certificate-btn" class="cta-button-secondary hidden" style="width: 100%; margin-top: 1rem;">
+                    <i class="fa-solid fa-scroll" style="margin-right: 0.5rem;"></i> View Certificate
+                </button>
+            </div>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initProfilePage);
+    </script>
+</body>
+</html>

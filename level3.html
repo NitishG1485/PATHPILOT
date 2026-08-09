@@ -1,0 +1,108 @@
+<!-- templates/level3.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 3: University Navigator</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content container">
+        <div class="level-page-header">
+            <h1>Level 3: University Navigator</h1>
+            <p>Find and compare institutions that align with your goals and stream. (+200 XP)</p>
+        </div>
+        <div class="card">
+            <h2>Find Your Perfect Match</h2>
+            <div class="filter-group">
+                <div class="form-group">
+                    <label for="filter-location">Location</label>
+                    <select id="filter-location">
+                        <option value="">All Locations</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="filter-major">Major Focus (Based on Lvl 1)</label>
+                    <select id="filter-major">
+                        <option value="">All Streams</option>
+                        <option value="tech">Technology & Engineering</option>
+                        <option value="creative">Creative Arts & Design</option>
+                        <option value="business">Business & Commerce</option>
+                    </select>
+                </div>
+                <button id="find-universities-btn" class="cta-button" style="align-self: flex-end;">
+                    <i class="fa-solid fa-magnifying-glass" style="margin-right: 0.5rem;"></i> Search
+                </button>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 1.5rem;">
+            <h2>Search Results</h2>
+            <div id="university-results">
+                <!-- Results displayed here -->
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button id="complete-level-3" class="cta-button" disabled>
+                <i class="fa-solid fa-circle-check" style="margin-right: 0.5rem;"></i> Complete Level (+200 XP)
+            </button>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initLevel3Page);
+    </script>
+</body>
+</html>

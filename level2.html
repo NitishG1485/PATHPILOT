@@ -1,0 +1,93 @@
+<!-- templates/level2.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 2: Skill Forge</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div clas="main-content container">
+        <div class="level-page-header">
+            <h1>Level 2: Skill Forge</h1>
+            <p>Build and enhance your skill portfolio with AI-powered recommendations. You need at least 3 skills to complete. (+150 XP)</p>
+        </div>
+        <div class="card">
+            <h2>Your Skill Portfolio (<span id="skill-count">0</span>/3 Minimum)</h2>
+            <div class="skill-input-group">
+                <input type="text" id="skill-input" placeholder="Enter a skill (e.g., Python, Figma, Marketing)">
+                <button id="add-skill-btn" class="cta-button-secondary">Add Skill</button>
+            </div>
+            <ul id="skill-portfolio-list">
+                <!-- Skills displayed here -->
+            </ul>
+            <div class="skill-section">
+                <button id="find-skills-btn" class="cta-button">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="margin-right: 0.5rem;"></i> Find Recommended Skills
+                </button>
+                <ul id="recommended-skills-list" style="margin-top: 1rem;">
+                    <li>Click the button above to get stream-specific suggestions.</li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button id="complete-level-2" class="cta-button" disabled>
+                <i class="fa-solid fa-circle-check" style="margin-right: 0.5rem;"></i> Complete Level (+150 XP)
+            </button>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initLevel2Page);
+    </script>
+</body>
+</html>

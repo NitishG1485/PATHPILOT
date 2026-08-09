@@ -1,0 +1,108 @@
+<!-- templates/level5.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 5: Career Launchpad</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content container">
+        <div class="level-page-header">
+            <h1>Level 5: Career Launchpad</h1>
+            <p>Master networking, job search, and interview strategies. Complete all tasks to launch your career! (+300 XP)</p>
+        </div>
+        <div class="card">
+            <h2>Your Launch Checklist</h2>
+            <div id="task-list">   
+                <div class="launchpad-section">
+                    <h4>1. Job Market Research</h4>
+                    <div class="task-item">
+                        <input type="checkbox" id="task1" data-task="1">
+                        <label for="task1">Identify 5 target companies and research their culture/requirements.</label>
+                    </div>
+                </div>
+                <div class="launchpad-section">
+                    <h4>2. Network Building</h4>
+                    <div class="task-item">
+                        <input type="checkbox" id="task2" data-task="2">
+                        <label for="task2">Connect with 3 industry professionals on LinkedIn or at an event.</label>
+                    </div>
+                </div>
+                <div class="launchpad-section">
+                    <h4>3. Application Strategy</h4>
+                    <div class="task-item">
+                        <input type="checkbox" id="task3" data-task="3">
+                        <label for="task3">Tailor your resume and cover letter for a specific target role.</label>
+                    </div>
+                </div>
+                <div class="launchpad-section">
+                    <h4>4. Interview Prep</h4>
+                    <div class="task-item">
+                        <input type="checkbox" id="task4" data-task="4">
+                        <label for="task4">Practice answering the 5 most common behavioral interview questions.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+            <button id="complete-level-5" class="cta-button" disabled>
+                <i class="fa-solid fa-circle-check" style="margin-right: 0.5rem;"></i> Complete Level (+300 XP)
+            </button>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initLevel5Page);
+    </script>
+</body>
+</html>

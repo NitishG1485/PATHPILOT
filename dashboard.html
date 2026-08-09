@@ -1,0 +1,98 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathPilot - Dashboard</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-content container">
+        <div class="level-page-header">
+            <h1>Your Career Quest</h1>
+            <p>Complete each level to unlock your career potential. Earn 1000+ XP!</p>
+        </div>
+
+        <!-- Overall Progress -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3>Overall Progress</h3>
+                <span id="progress-text" style="font-weight: 700; color: var(--primary-color);">0%</span>
+            </div>
+            <div style="background-color: var(--border-color); height: 10px; border-radius: 9999px;">
+                <div id="progress-bar-fill" style="background-color: var(--secondary-color); height: 100%; width: 0%; border-radius: 9999px; transition: width 0.5s;"></div>
+            </div>
+        </div>
+
+        <div id="level-container" class="dashboard-grid">
+            <!-- Level Cards will be dynamically inserted here by script.js -->
+        </div>
+        
+        <div class="card hidden" id="certificate-dashboard-link" style="margin-top: 2rem; text-align: center; border-left: 5px solid var(--primary-color);">
+            <h3 style="color: var(--primary-color);">
+                <i class="fa-solid fa-trophy" style="margin-right: 0.5rem;"></i> Congratulations! You've completed all levels.
+            </h3>
+            <p>Visit your Profile to confirm your details and download your Certificate of Achievement.</p>
+            <a href="/profile" class="cta-button" style="margin-top: 1rem;">View Profile & Certificate</a>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+   
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initDashboardPage);
+    </script>
+</body>
+</html>

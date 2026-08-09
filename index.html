@@ -1,0 +1,102 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathPilot - Navigate Your Career Quest</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="main-content container">
+        <section class="card" style="padding: 4rem 2rem; text-align: center; background: linear-gradient(to right, #eef2ff, #f9fafb);">
+            <h1>Navigate Your Career with PathPilot 🎯</h1>
+            <p style="font-size: 1.25rem; color: var(--text-color-light); margin-bottom: 2rem;">
+                Discover your ideal career path through gamified learning, AI-powered insights, and personalized guidance.
+            </p>
+            <a href="/level1" id="start-cta" class="cta-button" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+                <i class="fa-solid fa-arrow-right-to-bracket" style="margin-right: 0.5rem;"></i> Start Your Journey
+            </a>
+            <div style="display: flex; justify-content: space-around; margin-top: 3rem;">
+                <div>
+                    <h3 style="color: var(--primary-color); font-size: 2rem;">5</h3>
+                    <p style="color: var(--text-color-light);">Levels to Conquer</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary-color); font-size: 2rem;">1000+</h3>
+                    <p style="color: var(--text-color-light);">XP to Earn</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--primary-color); font-size: 2rem;">1</h3>
+                    <p style="color: var(--text-color-light);">Certificate to Unlock</p>
+                </div>
+            </div>
+        </section>
+        <!-- Feature Section -->
+        <h2 style="text-align: center; margin-top: 4rem;">Why Choose PathPilot?</h2>
+        <div class="dashboard-grid">
+            <div class="card">
+                <h3><i class="fa-solid fa-brain" style="color: var(--primary-color); margin-right: 0.5rem;"></i> Personalized Assessment</h3>
+                <p>Discover your strengths through our comprehensive aptitude and personality assessment (Level 1).</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-screwdriver-wrench" style="color: var(--secondary-color); margin-right: 0.5rem;"></i> Skill Development</h3>
+                <p>Build industry-relevant skills with AI-powered course recommendations and tracking (Level 2).</p>
+            </div>
+            <div class="card">
+                <h3><i class="fa-solid fa-graduation-cap" style="color: #f59e0b; margin-right: 0.5rem;"></i> Resume Optimization</h3>
+                <p>Get AI-powered feedback to create a standout professional profile (Level 4).</p>
+            </div>
+        </div>
+    </div>
+     <div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

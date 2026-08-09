@@ -1,0 +1,110 @@
+<!-- templates/level4.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level 4: Resume Optimizer</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="/" class="logo">Path<span>Pilot</span></a>
+                <div class="navbar-nav">
+                    <a href="/">Home</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/profile">Profile</a>
+                </div>
+                <div class="user-info">
+                    <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i> 
+                    <span id="xp-total" class="xp-badge">0 XP</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-content container">
+        <div class="level-page-header">
+            <h1>Level 4: Resume Optimizer</h1>
+            <p>Paste sections of your resume below and get AI-powered feedback on structure and content. (+250 XP)</p>
+        </div>
+
+        <div class="card">
+            <form id="resume-form">
+                <div class="resume-section">
+                    <label for="resume-summary">Professional Summary / Objective</label>
+                    <textarea id="resume-summary" rows="4" placeholder="Write a concise 3-4 sentence summary of your career goals and key achievements. (Min 50 chars for feedback)" required></textarea>
+                </div>
+                <div class="resume-section">
+                    <label for="resume-skills">Key Skills (Comma Separated)</label>
+                    <input type="text" id="resume-skills" placeholder="e.g., Python, Project Management, Figma, Financial Analysis (Min 10 chars for feedback)" required>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button type="submit" id="get-feedback-btn" class="cta-button" disabled>
+                        <i class="fa-solid fa-robot" style="margin-right: 0.5rem;"></i> Get AI Feedback
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div class="card" id="ai-feedback">
+            <h2><i class="fa-solid fa-lightbulb" style="color: var(--warning-color); margin-right: 0.5rem;"></i> AI Feedback Analysis</h2>
+            <div id="feedback-loading" class="hidden">
+                <i class="fa-solid fa-spinner fa-spin"></i> Analyzing content...
+            </div>
+            <ul id="feedback-list">
+                <li style="color: var(--text-color-light);">Enter your details above and click 'Get AI Feedback' to start the analysis.</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <button id="complete-level-4" class="cta-button" disabled>
+                <i class="fa-solid fa-circle-check" style="margin-right: 0.5rem;"></i> Complete Level (+250 XP)
+            </button>
+        </div>
+    </div>
+<div class="theme-switcher">
+       <button id="theme-toggle">
+           <i class="fas fa-moon moon-icon"></i>
+           <i class="fas fa-sun sun-icon"></i>
+       </button>
+   </div>
+   
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Function to apply the saved theme on page load
+        const applyTheme = () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                body.setAttribute('data-theme', savedTheme);
+            }
+        };
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', () => {
+            let newTheme = 'light';
+            if (body.getAttribute('data-theme') !== 'dark') {
+                newTheme = 'dark';
+            }
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Apply theme when the page loads
+        applyTheme();
+    });
+</script>
+    <script src="/static/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initLevel4Page);
+    </script>
+</body>
+</html>
